@@ -1,0 +1,6 @@
+# IMA Studio Skills — GitHub Pages
+
+User-agent: *
+Allow: /
+
+Sitemap: https://imastuido.github.io/ima-skills-pages/sitemap.xml

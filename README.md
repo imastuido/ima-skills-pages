@@ -44,6 +44,9 @@ python3 -m http.server 8000
 ```
 ima-skills-pages/
 ├── index.html          # 单页入口，中英切换由 JS 注入
+├── 404.html            # 404 页（含 noindex 利于 SEO）
+├── robots.txt          # 爬虫规则与 Sitemap 地址
+├── sitemap.xml         # 站点地图，便于搜索引擎收录
 ├── assets/
 │   ├── css/
 │   │   └── style.css   # 样式
@@ -52,6 +55,23 @@ ima-skills-pages/
 │       └── main.js     # 语言切换与渲染
 └── README.md
 ```
+
+---
+
+## SEO 配置 / SEO Setup
+
+部署到 GitHub Pages 后，请将以下文件中的 **`YOUR-GITHUB-PAGES-URL`** 替换为你的实际站点地址（如 `https://your-username.github.io/ima-skills-pages` 或自定义域名 `https://skills.imastudio.com`）：
+
+- **`robots.txt`** — `Sitemap:` 后的 URL
+- **`sitemap.xml`** — `<loc>` 里的首页 URL
+- **`index.html`** — `<link rel="canonical">` 以及 `og:url`、`og:image` 中的 URL
+
+替换完成后：
+
+1. 在 [Google Search Console](https://search.google.com/search-console) 添加站点并提交 `sitemap.xml` 地址。
+2. 在 [Bing Webmaster Tools](https://www.bing.com/webmasters) 同样添加站点并提交 sitemap。
+
+这样有利于搜索引擎更快收录并正确展示分享链接（Open Graph）。
 
 - **多语言**：`assets/js/i18n.js` 中的 `window.I18N` 含 `zh` / `en`，修改此处即可更新文案。
 - **样式**：`assets/css/style.css` 使用 CSS 变量，便于改主题色和间距。

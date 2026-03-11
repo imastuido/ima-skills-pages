@@ -10,8 +10,8 @@ window.I18N = {
       cta: '开始使用',
     },
     hero: {
-      title: 'IMA Studio 技能包',
-      subtitle: '一站式 AI 创作：图像 · 视频 · 音乐 · 语音，统一入口，多模型智能调度',
+      title: 'IMA Studio — 全栈创作引擎',
+      subtitle: '图像 · 视频 · 音乐 · 语音，一链打通。40+ 顶尖模型智能编排，从想法到成片，一条指令。',
       cta: '查看技能',
       ctaSecondary: '了解 IMA',
     },
@@ -131,8 +131,8 @@ window.I18N = {
       cta: 'Get Started',
     },
     hero: {
-      title: 'IMA Studio Skills',
-      subtitle: 'One-stop AI creation: image, video, music, and TTS — unified access with multi-model orchestration',
+      title: 'IMA Studio — Full-Stack Creation Engine',
+      subtitle: 'Image · Video · Music · Voice — one pipeline. 40+ models, one command. Idea to asset, intelligently orchestrated.',
       cta: 'View Skills',
       ctaSecondary: 'Learn about IMA',
     },

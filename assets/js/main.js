@@ -63,7 +63,7 @@
         .map(
           function (s) {
             var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
-            var installCmd = repoBase ? "使用 " + repoUrl + ".git 方式和升级" : "";
+            var gitCloneCmd = repoBase ? "git clone " + repoUrl + ".git" : "";
             var clawhubCmd = "clawhub install " + s.slug;
             return (
               '<div class="skill-card">' +
@@ -79,11 +79,12 @@
               '<div class="skill-models">' +
               escapeHtml(s.models) +
               "</div>" +
+              (repoUrl !== "#" ? ('<p class="skill-repo-url-wrap"><a href="' + escapeHtml(repoUrl) + '" target="_blank" rel="noopener" class="skill-repo-url">' + escapeHtml(repoUrl) + "</a></p>") : "") +
               '<div class="skill-actions">' +
-              (installCmd ? ('<button type="button" class="skill-copy-btn" data-copy="' +
-              escapeHtml(installCmd) +
+              (gitCloneCmd ? ('<button type="button" class="skill-copy-btn" data-copy="' +
+              escapeHtml(gitCloneCmd) +
               '" title="' +
-              escapeHtml(installCmd) +
+              escapeHtml(gitCloneCmd) +
               '">' +
               escapeHtml(copyLabel) +
               "</button>") : "") +

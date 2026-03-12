@@ -100,7 +100,7 @@ window.I18N = {
           models: 'Nano Banana · Nano Banana Pro · Nano Banana 2',
         },
       ],
-      installHint: '推荐使用「GITHUB 安装」复制「使用 [仓库].git 方式和升级」到本地；或从上方 GitHub 仓库链接下载。使用前请阅读 ima-knowledge-ai。',
+      installHint: '每个技能卡片上均有 GitHub 仓库地址与「GITHUB 安装」按钮（复制 git clone 命令），可直接用 git clone 或 curl 从 GitHub 拉取，无需经 ClawHub。下方另有纯文本列表供爬虫/无 JS 环境使用。使用前请阅读 ima-knowledge-ai。',
     },
     how: {
       title: '使用方式',
@@ -221,7 +221,7 @@ window.I18N = {
           models: 'Nano Banana · Nano Banana Pro · Nano Banana 2',
         },
       ],
-      installHint: 'Recommended: use "GITHUB install" to copy "Use [repo].git to install and upgrade"; or download from the GitHub links above. Read ima-knowledge-ai before use.',
+      installHint: 'Each skill card shows the GitHub repo URL and a "GITHUB install" button (copies git clone command). You can git clone or curl from GitHub directly without ClawHub. A plain-text list below is available for crawlers / no-JS. Read ima-knowledge-ai before use.',
     },
     how: {
       title: 'How to Use',

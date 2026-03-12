@@ -375,6 +375,67 @@ section {
   border-color: var(--text-muted);
 }
 
+.skill-repo-url-wrap {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+}
+
+.skill-repo-url {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.skill-repo-url:hover {
+  color: var(--accent);
+}
+
+/* 纯 HTML 技能列表：供 fetch/readability 提取，不依赖 JS */
+.skills-list-static {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+}
+
+.skills-list-static-title {
+  margin: 0 0 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.skills-list-static ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.skills-list-static li {
+  margin-bottom: 6px;
+}
+
+.skills-list-static a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.skills-list-static a:hover {
+  text-decoration: underline;
+}
+
+.skills-list-static code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
 .skills-hint {
   margin-top: 24px;
   padding: 14px 18px;

@@ -44,7 +44,7 @@ window.I18N = {
     skills: {
       title: '技能列表',
       subtitle: '可按需安装单一技能，或使用 IMA Studio 一站式覆盖全部创作场景',
-      repoBaseUrl: 'https://github.com/imastudio',
+      repoBaseUrl: 'https://github.com/imastuido',
       copyInstall: 'GITHUB 安装',
       copyClawhub: 'clawhub 安装',
       copied: '已复制',
@@ -165,7 +165,7 @@ window.I18N = {
     skills: {
       title: 'Skills',
       subtitle: 'Install individual skills or use IMA Studio for all creation scenarios',
-      repoBaseUrl: 'https://github.com/imastudio',
+      repoBaseUrl: 'https://github.com/imastuido',
       copyInstall: 'GITHUB install',
       copyClawhub: 'Clawhub install',
       copied: 'Copied',

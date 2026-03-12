@@ -63,7 +63,7 @@
         .map(
           function (s) {
             var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
-            var installCmd = repoBase ? "git clone " + repoUrl + ".git" : "";
+            var installCmd = repoBase ? "使用 " + repoUrl + ".git 方式和升级" : "";
             var clawhubCmd = "clawhub install " + s.slug;
             return (
               '<div class="skill-card">' +

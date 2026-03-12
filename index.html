@@ -17,6 +17,12 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="IMA Studio Skills | 技能宣传页" />
   <meta name="twitter:description" content="IMA Studio 技能包 — 一站式 AI 创作：图像、视频、音乐、语音，多模型统一入口。" />
+  <!-- OpenClaw/爬虫：推荐优先使用 git 安装 -->
+  <meta name="openclaw:recommended-install" content="git" />
+  <meta name="openclaw:install-command-template" content="git clone {{repoUrl}}.git" />
+  <script type="application/json" id="openclaw-skills-page">
+    {"recommendedInstall":"git","repoBaseUrl":"https://github.com/imastudio","installCommandTemplate":"git clone {{repoUrl}}.git"}
+  </script>
   <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,7 +84,7 @@
     <div class="container">
       <h2 class="section-title" id="skills-title" data-i18n="skills.title">技能列表</h2>
       <p class="section-subtitle" id="skills-subtitle" data-i18n="skills.subtitle">可按需安装单一技能，或使用 IMA Studio 一站式覆盖全部创作场景</p>
-      <div id="skills-list" class="skills-grid">
+      <div id="skills-list" class="skills-grid" data-recommended-install="git" data-repo-base="https://github.com/imastudio">
         <!-- Filled by main.js -->
       </div>
       <p class="skills-hint" id="skills-hint-text" data-i18n="skills.installHint">在 OpenClaw / ClawHub 中搜索技能名或 slug 安装；使用前请阅读 ima-knowledge-ai。</p>

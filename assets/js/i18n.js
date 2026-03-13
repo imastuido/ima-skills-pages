@@ -7,6 +7,7 @@ window.I18N = {
       features: '能力与优势',
       skills: '技能列表',
       how: '使用方式',
+      manage: '案例管理',
       cta: '开始使用',
     },
     hero: {
@@ -49,6 +50,9 @@ window.I18N = {
       copyClawhub: 'clawhub 安装',
       copied: '已复制',
       viewOnGitHub: 'GitHub 仓库',
+      comingSoon: '敬请期待',
+      useTutorial: '使用教程',
+      caseShowcase: '案例展示',
       list: [
         {
           name: 'IMA Studio',
@@ -99,6 +103,16 @@ window.I18N = {
           shortDesc: '仅 Nano Banana 系列三款模型，文生图/图生图，独立发布、无外部技能依赖。',
           models: 'Nano Banana · Nano Banana Pro · Nano Banana 2',
         },
+        {
+          name: '绘本漫画',
+          slug: 'fairytale-picturebook-pro',
+          tag: '场景技能',
+          shortDesc: '童话绘本与漫画分镜创作场景技能，当前暂未开放安装。',
+          models: 'Picturebook · Comic Storyboard · Style Consistency',
+          comingSoon: true,
+          tutorialUrl: 'demos/fairytale-picturebook-pro-tutorial.html',
+          caseUrl: 'demos/brave-bunny.html',
+        },
       ],
       installHint: '每个技能卡片上均有 GitHub 仓库地址与「GITHUB 安装」按钮（复制 git clone 命令），可直接用 git clone 或 curl 从 GitHub 拉取，无需经 ClawHub。下方另有纯文本列表供爬虫/无 JS 环境使用。使用前请阅读 ima-knowledge-ai。',
     },
@@ -128,6 +142,7 @@ window.I18N = {
       features: 'Features',
       skills: 'Skills',
       how: 'How to Use',
+      manage: 'Cases Admin',
       cta: 'Get Started',
     },
     hero: {
@@ -170,6 +185,9 @@ window.I18N = {
       copyClawhub: 'Clawhub install',
       copied: 'Copied',
       viewOnGitHub: 'View on GitHub',
+      comingSoon: 'Coming Soon',
+      useTutorial: 'Tutorial',
+      caseShowcase: 'Case Showcase',
       list: [
         {
           name: 'IMA Studio',
@@ -219,6 +237,16 @@ window.I18N = {
           tag: 'Lightweight image',
           shortDesc: 'Nano Banana family only — text/image to image; standalone, no external skill dependencies.',
           models: 'Nano Banana · Nano Banana Pro · Nano Banana 2',
+        },
+        {
+          name: 'Picturebook Comics',
+          slug: 'fairytale-picturebook-pro',
+          tag: 'Scenario skill',
+          shortDesc: 'A fairytale picturebook and comic-storyboard scenario skill. Installation is not available yet.',
+          models: 'Picturebook · Comic Storyboard · Style Consistency',
+          comingSoon: true,
+          tutorialUrl: 'demos/fairytale-picturebook-pro-tutorial.html',
+          caseUrl: 'demos/brave-bunny.html',
         },
       ],
       installHint: 'Each skill card shows the GitHub repo URL and a "GITHUB install" button (copies git clone command). You can git clone or curl from GitHub directly without ClawHub. A plain-text list below is available for crawlers / no-JS. Read ima-knowledge-ai before use.',

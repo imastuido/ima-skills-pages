@@ -59,12 +59,61 @@
       var copyLabel = t.skills.copyInstall || "Git install";
       var copyClawhubLabel = t.skills.copyClawhub || "Clawhub install";
       var viewLabel = t.skills.viewOnGitHub || "GitHub";
+      var comingSoonLabel = t.skills.comingSoon || "敬请期待";
+      var tutorialLabel = t.skills.useTutorial || "使用教程";
+      var caseShowcaseLabel = t.skills.caseShowcase || "案例展示";
       skillsContainer.innerHTML = t.skills.list
         .map(
           function (s) {
+            var isComingSoon = !!s.comingSoon;
+            var tutorialUrl = s.tutorialUrl || "";
+            var caseUrl = s.caseUrl || "";
             var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
             var gitCloneCmd = repoBase ? "git clone " + repoUrl + ".git" : "";
             var clawhubCmd = "clawhub install " + s.slug;
+            var actionsHtml = "";
+            if (isComingSoon) {
+              actionsHtml += '<span class="skill-comingsoon">' + escapeHtml(comingSoonLabel) + "</span>";
+              if (tutorialUrl) {
+                actionsHtml +=
+                  '<a href="' +
+                  escapeHtml(tutorialUrl) +
+                  '" class="skill-repo-link skill-tutorial-link">' +
+                  escapeHtml(tutorialLabel) +
+                  "</a>";
+              }
+              if (caseUrl) {
+                actionsHtml +=
+                  '<a href="' +
+                  escapeHtml(caseUrl) +
+                  '" class="skill-repo-link skill-case-link">' +
+                  escapeHtml(caseShowcaseLabel) +
+                  "</a>";
+              }
+            } else {
+              actionsHtml +=
+                (gitCloneCmd
+                  ? ('<button type="button" class="skill-copy-btn" data-copy="' +
+                      escapeHtml(gitCloneCmd) +
+                      '" title="' +
+                      escapeHtml(gitCloneCmd) +
+                      '">' +
+                      escapeHtml(copyLabel) +
+                      "</button>")
+                  : "") +
+                '<button type="button" class="skill-copy-btn skill-copy-btn-clawhub" data-copy="' +
+                escapeHtml(clawhubCmd) +
+                '" title="' +
+                escapeHtml(clawhubCmd) +
+                '">' +
+                escapeHtml(copyClawhubLabel) +
+                "</button>" +
+                '<a href="' +
+                escapeHtml(repoUrl) +
+                '" target="_blank" rel="noopener" class="skill-repo-link">' +
+                escapeHtml(viewLabel) +
+                "</a>";
+            }
             return (
               '<div class="skill-card">' +
               '<span class="skill-tag">' +
@@ -79,27 +128,15 @@
               '<div class="skill-models">' +
               escapeHtml(s.models) +
               "</div>" +
-              (repoUrl !== "#" ? ('<p class="skill-repo-url-wrap"><a href="' + escapeHtml(repoUrl) + '" target="_blank" rel="noopener" class="skill-repo-url">' + escapeHtml(repoUrl) + "</a></p>") : "") +
+              (!isComingSoon && repoUrl !== "#"
+                ? ('<p class="skill-repo-url-wrap"><a href="' +
+                    escapeHtml(repoUrl) +
+                    '" target="_blank" rel="noopener" class="skill-repo-url">' +
+                    escapeHtml(repoUrl) +
+                    "</a></p>")
+                : "") +
               '<div class="skill-actions">' +
-              (gitCloneCmd ? ('<button type="button" class="skill-copy-btn" data-copy="' +
-              escapeHtml(gitCloneCmd) +
-              '" title="' +
-              escapeHtml(gitCloneCmd) +
-              '">' +
-              escapeHtml(copyLabel) +
-              "</button>") : "") +
-              '<button type="button" class="skill-copy-btn skill-copy-btn-clawhub" data-copy="' +
-              escapeHtml(clawhubCmd) +
-              '" title="' +
-              escapeHtml(clawhubCmd) +
-              '">' +
-              escapeHtml(copyClawhubLabel) +
-              "</button>" +
-              '<a href="' +
-              escapeHtml(repoUrl) +
-              '" target="_blank" rel="noopener" class="skill-repo-link">' +
-              escapeHtml(viewLabel) +
-              "</a>" +
+              actionsHtml +
               "</div>" +
               "</div>"
             );

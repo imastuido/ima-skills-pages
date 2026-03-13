@@ -44,6 +44,7 @@ python3 -m http.server 8000
 ```
 ima-skills-pages/
 ├── index.html          # 单页入口，中英切换由 JS 注入
+├── manage.html         # 技能案例管理页（静态 CRUD + 导入导出）
 ├── 404.html            # 404 页（含 noindex 利于 SEO）
 ├── robots.txt          # 爬虫规则与 Sitemap 地址
 ├── sitemap.xml         # 站点地图，便于搜索引擎收录
@@ -52,7 +53,11 @@ ima-skills-pages/
 │   │   └── style.css   # 样式
 │   └── js/
 │       ├── i18n.js     # 中英文案
-│       └── main.js     # 语言切换与渲染
+│       ├── main.js     # 语言切换与渲染
+│       ├── cases-core.mjs    # 案例数据模型/校验/导入导出核心
+│       └── cases-manager.mjs # 管理页交互逻辑
+├── test/
+│   └── cases-core.test.mjs   # 核心逻辑测试
 └── README.md
 ```
 
@@ -63,8 +68,8 @@ ima-skills-pages/
 部署到 GitHub Pages 后，请将以下文件中的 **`YOUR-GITHUB-PAGES-URL`** 替换为你的实际站点地址（如 `https://your-username.github.io/ima-skills-pages` 或自定义域名 `https://skills.imastudio.com`）：
 
 - **`robots.txt`** — `Sitemap:` 后的 URL
-- **`sitemap.xml`** — `<loc>` 里的首页 URL
-- **`index.html`** — `<link rel="canonical">` 以及 `og:url`、`og:image` 中的 URL
+- **`sitemap.xml`** — `<loc>` 里的页面 URL（首页和管理页）
+- **`index.html`** / **`manage.html`** — `<link rel="canonical">` 以及 `og:url`、`og:image` 中的 URL
 
 替换完成后：
 
@@ -75,6 +80,21 @@ ima-skills-pages/
 
 - **多语言**：`assets/js/i18n.js` 中的 `window.I18N` 含 `zh` / `en`，修改此处即可更新文案。
 - **样式**：`assets/css/style.css` 使用 CSS 变量，便于改主题色和间距。
+
+---
+
+## 案例管理页 / Case Management
+
+- 访问 `manage.html` 进入技能案例管理页。
+- 支持：新增、编辑、删除、关键词搜索、按技能/状态筛选。
+- 数据存储在浏览器 `localStorage`（键名：`ima-skills-cases-v1`）。
+- 支持 `JSON` 导入导出，便于团队共享与版本化管理。
+
+运行测试：
+
+```bash
+node --test test/cases-core.test.mjs
+```
 
 ---
 

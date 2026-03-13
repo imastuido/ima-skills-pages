@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="fairytale-picturebook-pro 使用教程：从输入收集、故事规划、提示词版本化到 QA/合规发布门禁。" />
+  <title>绘本漫画使用教程 - fairytale-picturebook-pro</title>
+  <link rel="canonical" href="https://imastuido.github.io/ima-skills-pages/demos/fairytale-picturebook-pro-tutorial.html" />
+  <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .tutorial-wrap { padding: 48px 0 64px; }
+    .tutorial-lead { color: var(--text-muted); max-width: 860px; margin: 0 0 24px; }
+    .tutorial-grid { display: grid; gap: 16px; }
+    .tutorial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+    }
+    .tutorial-card h2 { margin: 0 0 10px; font-size: 1.08rem; }
+    .tutorial-card p { margin: 0 0 10px; color: var(--text-muted); }
+    .tutorial-card ul, .tutorial-card ol { margin: 0; padding-left: 1.2rem; color: var(--text-muted); }
+    .tutorial-card li { margin: 6px 0; }
+    .tutorial-code {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      background: #0f1219;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #c7d2fe;
+      padding: 10px 12px;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+    .tutorial-cta {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../" class="nav-brand">
+        <img src="../assets/images/logo.png" alt="IMA Studio" class="nav-logo" width="32" height="32" />
+        <span>IMA Studio Skills</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#skills">技能列表</a>
+        <a href="./index.html">创作演示</a>
+        <a href="../manage.html" class="btn btn-primary">案例管理</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tutorial-wrap">
+    <div class="container">
+      <h1 class="section-title">绘本漫画使用教程（fairytale-picturebook-pro）</h1>
+      <p class="tutorial-lead">本教程根据该技能目录下的 `SKILL.md`、`onboarding/*`、`references/*` 整理。目标是把童话绘本/漫画分镜生产流程标准化，确保角色风格一致、年龄适配、安全合规并可发布。</p>
+
+      <div class="tutorial-grid">
+        <section class="tutorial-card">
+          <h2>1. 启动前输入（最小必填）</h2>
+          <ol>
+            <li>场景类型：bedtime fairytale / emotional learning / nature exploration / festival story。</li>
+            <li>年龄段：`3-5`、`6-8`、`9-12`。</li>
+            <li>主题与情绪目标。</li>
+            <li>语言。</li>
+            <li>页数与发布渠道（book/social）。</li>
+          </ol>
+          <p>如果范围过大，先降级为 4 页试点（pilot），确认故事方向后再扩页。</p>
+        </section>
+
+        <section class="tutorial-card">
+          <h2>2. 五阶段工作流</h2>
+          <ol>
+            <li>Onboarding：收集输入并确认范围。</li>
+            <li>StoryTaskSpec：构建 `book_meta`、`story_outline`、`style_bible`、`character_bible`、`page_plan[]`。</li>
+            <li>Generation：新页走 `text_to_image`，连续性修正走 `image_to_image`，偏差走 repair prompt。</li>
+            <li>Result Handling：保存 RawResult，并标准化为 ArtifactResult，外链转稳定资产并记录 hash。</li>
+            <li>Gates & Handoff：通过 QA/合规/预算与人工审批后，才进入发布交付。</li>
+          </ol>
+        </section>
+
+        <section class="tutorial-card">
+          <h2>3. 提示词模板（必须版本化）</h2>
+          <p>每次生成都要记录：`prompt_version`、`anchor_version`、`scene_id`，保证可复现。</p>
+          <div class="tutorial-code">Master Prompt:
+[Style anchor] + [Scene setting] + [Character anchor] + [Action] + [Emotion] + [Lighting/material] + [Storybook constraints]
+
+Continuity Prompt:
+Keep the same [style/scene/character anchors]. Modify only [target delta]. Preserve [do-not-change list].
+
+Repair Prompt:
+Preserve composition and narrative intent. Repair [character mismatch/style drift/prop errors]. Maintain [anchor list].</div>
+        </section>
+
+        <section class="tutorial-card">
+          <h2>4. 年龄段写作约束</h2>
+          <ul>
+            <li>`3-5`：每页 1-2 句、冲突单一、词汇具体。</li>
+            <li>`6-8`：每页 2-4 句，允许轻量转折与因果。</li>
+            <li>`9-12`：允许复句与多角色互动，但避免成人主题。</li>
+          </ul>
+          <p>硬性规则：不得出现血腥/羞辱/危险模仿引导；`age_readability_score` 不达标需改写。</p>
+        </section>
+
+        <section class="tutorial-card">
+          <h2>5. QA 与合规发布门禁</h2>
+          <ul>
+            <li>一致性门禁：角色、风格、场景锚点连续性。</li>
+            <li>语言门禁：年龄可读性 + 风险语言扫描。</li>
+            <li>可靠性门禁：重试状态、幂等冲突检查。</li>
+            <li>成本门禁：`credit_used <= credit_budget_per_book`。</li>
+            <li>人工门禁：高风险输出必须有编辑审批日志。</li>
+          </ul>
+          <p>发布阻断条件包括：`policy_pass=false`、缺少平台 AI 披露字段、IP 风险未解除、应审未审。</p>
+        </section>
+
+        <section class="tutorial-card">
+          <h2>6. 交付物清单</h2>
+          <ul>
+            <li>`story_outline.json`</li>
+            <li>`page_plan.json`</li>
+            <li>`style_bible.md`</li>
+            <li>`character_bible.md`</li>
+            <li>`artifact_result.json`</li>
+            <li>`publish_checklist_kdp.md`（目标渠道为 KDP 时）</li>
+          </ul>
+          <div class="tutorial-cta">
+            <a href="./brave-bunny.html" class="btn btn-primary">案例展示</a>
+            <a href="../index.html#skills" class="btn btn-secondary">返回技能列表</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

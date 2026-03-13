@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="IMA Studio 技能案例管理页（静态版）：支持新增、编辑、删除、筛选、导入导出 JSON。" />
+  <title>IMA Studio Skills | 技能案例管理</title>
+  <link rel="canonical" href="https://imastuido.github.io/ima-skills-pages/manage.html" />
+  <link rel="icon" href="assets/images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="cases-manage-page">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="./" class="nav-brand">
+        <img src="assets/images/logo.png" alt="IMA Studio" class="nav-logo" width="32" height="32" />
+        <span>IMA Studio Skills</span>
+      </a>
+      <div class="nav-links">
+        <a href="./index.html#skills">技能列表</a>
+        <a href="./manage.html" class="active-link">案例管理</a>
+        <a href="./index.html#cta" class="btn btn-primary">返回主页</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="section manage-main">
+    <div class="container">
+      <header class="manage-header">
+        <h1>技能案例管理</h1>
+        <p>静态页面模式：案例数据保存在当前浏览器的 localStorage，可导入/导出 JSON 进行备份与协作。</p>
+      </header>
+
+      <section class="manage-toolbar">
+        <div class="toolbar-group grow">
+          <label for="case-search">搜索</label>
+          <input id="case-search" type="search" placeholder="标题、简介、标签、技能 slug" />
+        </div>
+        <div class="toolbar-group">
+          <label for="filter-skill">技能筛选</label>
+          <select id="filter-skill">
+            <option value="all">全部技能</option>
+          </select>
+        </div>
+        <div class="toolbar-group">
+          <label for="filter-status">状态筛选</label>
+          <select id="filter-status">
+            <option value="all">全部状态</option>
+            <option value="draft">草稿</option>
+            <option value="published">已发布</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="manage-toolbar">
+        <div class="toolbar-actions">
+          <button type="button" id="btn-new" class="btn btn-secondary">新建案例</button>
+          <button type="button" id="btn-export" class="btn btn-secondary">导出 JSON</button>
+          <label class="btn btn-secondary import-label" for="import-file">导入 JSON</label>
+          <input id="import-file" type="file" accept="application/json" />
+          <button type="button" id="btn-clear" class="btn btn-danger">清空全部</button>
+        </div>
+        <div id="manage-stats" class="manage-stats">总计 0 条案例</div>
+      </section>
+
+      <section class="manage-grid">
+        <article class="manage-panel">
+          <h2 id="form-title">新建案例</h2>
+          <form id="case-form" novalidate>
+            <div class="form-row">
+              <label for="case-skill-slug">技能</label>
+              <select id="case-skill-slug" name="skillSlug" required>
+                <option value="">请选择技能</option>
+              </select>
+              <p class="field-error" data-error-for="skillSlug"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="case-title">案例标题</label>
+              <input id="case-title" name="title" type="text" maxlength="120" required />
+              <p class="field-error" data-error-for="title"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="case-summary">案例简介</label>
+              <textarea id="case-summary" name="summary" rows="4" maxlength="500" required></textarea>
+              <p class="field-error" data-error-for="summary"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="case-tags">标签</label>
+              <input id="case-tags" name="tags" type="text" placeholder="例：图像, 海报, 电商" maxlength="120" />
+            </div>
+
+            <div class="form-row">
+              <label for="case-demo-url">Demo URL</label>
+              <input id="case-demo-url" name="demoUrl" type="url" placeholder="https://example.com/demo" />
+              <p class="field-error" data-error-for="demoUrl"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="case-repo-url">Repo URL</label>
+              <input id="case-repo-url" name="repoUrl" type="url" placeholder="https://github.com/..." />
+              <p class="field-error" data-error-for="repoUrl"></p>
+            </div>
+
+            <div class="form-row">
+              <label for="case-status">状态</label>
+              <select id="case-status" name="status">
+                <option value="draft">草稿</option>
+                <option value="published">已发布</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="btn-save">保存案例</button>
+              <button type="button" class="btn btn-secondary" id="btn-cancel-edit">取消编辑</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="manage-panel">
+          <h2>案例列表</h2>
+          <div id="cases-empty" class="cases-empty">暂无案例，先创建第一条吧。</div>
+          <div class="cases-table-wrap">
+            <table class="cases-table" id="cases-table">
+              <thead>
+                <tr>
+                  <th>标题</th>
+                  <th>技能</th>
+                  <th>状态</th>
+                  <th>更新时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="cases-tbody"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="assets/js/cases-manager.mjs"></script>
+</body>
+</html>

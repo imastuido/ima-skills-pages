@@ -27,7 +27,9 @@
     <meta name="ima:total-credits" content="48" />
     <meta name="ima:page-count" content="8" />
     <meta name="ima:creation-date" content="2026-03-13" />
-    <meta name="ima:features" content="audio, sound-effects, background-music" />
+    <meta name="ima:features" content="audio, sound-effects, suno-music" />
+    <meta name="ima:music-model" content="Suno sonic-v4" />
+    <meta name="ima:music-credits" content="25" />
     
     <link rel="icon" href="../assets/images/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -507,6 +509,11 @@
         </div>
     </div>
 
+    <!-- 背景音乐（Suno 生成的原创摇篮曲）-->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="https://ima-ga.esxscloud.com/aiagent/src/d/20260314/in/95750cb9902847f553b482955d42be3a.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         let currentPage = 0;
         const totalPages = 8;
@@ -515,7 +522,7 @@
         let musicEnabled = false;
         let soundEnabled = true;
         let audioContext = null;
-        let backgroundMusic = null;
+        const backgroundMusicElement = document.getElementById('backgroundMusic');
 
         // 初始化音频上下文
         function initAudio() {
@@ -547,69 +554,27 @@
             oscillator.stop(audioContext.currentTime + 0.1);
         }
 
-        // 背景音乐（简单的音乐盒旋律）
-        function createBackgroundMusic() {
-            if (!audioContext) initAudio();
-            
-            // 创建一个简单的睡前摇篮曲旋律
-            const melody = [
-                { freq: 523.25, time: 0 },    // C5
-                { freq: 587.33, time: 0.5 },   // D5
-                { freq: 659.25, time: 1 },     // E5
-                { freq: 698.46, time: 1.5 },   // F5
-                { freq: 783.99, time: 2 },     // G5
-                { freq: 698.46, time: 2.5 },   // F5
-                { freq: 659.25, time: 3 },     // E5
-                { freq: 587.33, time: 3.5 },   // D5
-                { freq: 523.25, time: 4 }      // C5
-            ];
-            
-            return melody;
-        }
-
-        function playBackgroundMusic() {
-            if (!musicEnabled || !audioContext) return;
-            
-            const melody = createBackgroundMusic();
-            const baseTime = audioContext.currentTime;
-            
-            melody.forEach(note => {
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = note.freq;
-                oscillator.type = 'sine'; // 音乐盒般的纯净音色
-                
-                const startTime = baseTime + note.time;
-                gainNode.gain.setValueAtTime(0, startTime);
-                gainNode.gain.linearRampToValueAtTime(0.05, startTime + 0.05);
-                gainNode.gain.linearRampToValueAtTime(0, startTime + 0.4);
-                
-                oscillator.start(startTime);
-                oscillator.stop(startTime + 0.45);
-            });
-            
-            // 循环播放
-            if (musicEnabled) {
-                setTimeout(playBackgroundMusic, 5000);
-            }
+        // 背景音乐（Suno 生成的原创摇篮曲）
+        // 设置音量
+        if (backgroundMusicElement) {
+            backgroundMusicElement.volume = 0.3; // 30% 音量
         }
 
         // 切换背景音乐
         function toggleMusic() {
-            initAudio();
             musicEnabled = !musicEnabled;
             
             const btn = document.getElementById('musicBtn');
             if (musicEnabled) {
                 btn.classList.add('active');
-                playBackgroundMusic();
-                showHint('🎵 背景音乐已开启');
+                backgroundMusicElement.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                    showHint('⚠️ 音频播放失败，请点击页面后重试');
+                });
+                showHint('🎵 背景音乐已开启（Suno 原创）');
             } else {
                 btn.classList.remove('active');
+                backgroundMusicElement.pause();
                 showHint('🔇 背景音乐已关闭');
             }
         }

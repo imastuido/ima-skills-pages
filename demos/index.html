@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IMA Studio Skills 创作演示 - 查看使用 IMA Studio 技能包创作的示例作品和互动演示。">
+    <title>创作演示 - IMA Studio Skills | Demos & Examples</title>
+    <link rel="canonical" href="https://imastuido.github.io/ima-skills-pages/demos/" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="IMA Studio Skills 创作演示" />
+    <meta property="og:description" content="查看使用 IMA Studio 创作的示例作品" />
+    <meta property="og:url" content="https://imastuido.github.io/ima-skills-pages/demos/" />
+    
+    <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .demos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .demo-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .demo-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+        }
+
+        .demo-content {
+            padding: 25px;
+        }
+
+        .demo-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .demo-description {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .demo-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .demo-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--bg-light);
+            color: var(--text-light);
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .demo-tag.highlight {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .demos-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 创作演示</h1>
+            <p class="subtitle">使用 IMA Studio 技能包创作的示例作品</p>
+            <a href="../" class="back-link">← 返回首页</a>
+        </header>
+
+        <div class="demos-grid">
+            <!-- 勇敢的小兔子 -->
+            <a href="brave-bunny.html" class="demo-card">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/339bd6bf7c5e6977f26532563b110c4b.png" 
+                     alt="勇敢的小兔子" class="demo-thumbnail">
+                <div class="demo-content">
+                    <h3 class="demo-title">🐰 勇敢的小兔子</h3>
+                    <p class="demo-description">
+                        互动式儿童绘本，讲述小兔子豆豆克服恐惧、发现夜晚之美的成长故事。
+                        适合 3-5 岁儿童的睡前故事。
+                    </p>
+                    <div class="demo-meta">
+                        <span class="demo-tag highlight">Nano Banana 2</span>
+                        <span class="demo-tag">8 页绘本</span>
+                        <span class="demo-tag">48 积分</span>
+                        <span class="demo-tag">text_to_image</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 更多演示待添加 -->
+            <!-- 
+            <a href="example-2.html" class="demo-card">
+                <div class="demo-thumbnail" style="background: #e0e0e0;"></div>
+                <div class="demo-content">
+                    <h3 class="demo-title">更多演示即将推出</h3>
+                    <p class="demo-description">
+                        敬请期待更多使用 IMA Studio 创作的精彩案例...
+                    </p>
+                    <div class="demo-meta">
+                        <span class="demo-tag">Coming Soon</span>
+                    </div>
+                </div>
+            </a>
+            -->
+        </div>
+    </div>
+</body>
+</html>

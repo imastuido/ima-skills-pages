@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="《勇敢的小兔子》- 使用 IMA Studio 创作的互动式儿童绘本。一个关于勇气和成长的睡前故事，适合 3-5 岁儿童。">
+    <title>勇敢的小兔子 - IMA Studio 创作演示 | Brave Bunny Storybook</title>
+    <link rel="canonical" href="https://imastuido.github.io/ima-skills-pages/demos/brave-bunny.html" />
+    
+    <!-- Open Graph / 社交分享 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="勇敢的小兔子 - IMA Studio 创作演示" />
+    <meta property="og:description" content="使用 IMA Studio (Nano Banana 2) 创作的互动式儿童绘本。8 页完整故事，关于勇气和成长。" />
+    <meta property="og:url" content="https://imastuido.github.io/ima-skills-pages/demos/brave-bunny.html" />
+    <meta property="og:image" content="https://ws.esxscloud.com/aiagent/src/d/20260313/in/339bd6bf7c5e6977f26532563b110c4b.png" />
+    <meta property="og:locale" content="zh_CN" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="勇敢的小兔子 - IMA Studio 创作演示" />
+    <meta name="twitter:description" content="使用 Nano Banana 2 创作的互动式儿童绘本" />
+    <meta name="twitter:image" content="https://ws.esxscloud.com/aiagent/src/d/20260313/in/339bd6bf7c5e6977f26532563b110c4b.png" />
+    
+    <!-- IMA Studio 元数据 -->
+    <meta name="ima:model" content="Nano Banana 2 (gemini-3.1-flash-image)" />
+    <meta name="ima:task-type" content="text_to_image" />
+    <meta name="ima:total-credits" content="48" />
+    <meta name="ima:page-count" content="8" />
+    <meta name="ima:creation-date" content="2026-03-13" />
+    
+    <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --accent-secondary: #f5576c;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --border-color: #e0e0e0;
+            --shadow-sm: 0 4px 15px rgba(102, 126, 234, 0.4);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', 'Noto Serif SC', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .book-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .book-header {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .book-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+        }
+
+        .book-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .book-meta {
+            background: var(--bg-light);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .page-container {
+            padding: 40px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .page-text {
+            text-align: center;
+            font-size: 22px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            max-width: 600px;
+            padding: 0 20px;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .page-number {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 40px;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            font-weight: 600;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--border-color);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .cover {
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .cover h2 {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cover .subtitle {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .cover .start-button {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .cover .start-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .book-header h1 {
+                font-size: 24px;
+            }
+
+            .book-meta {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .page-container {
+                padding: 20px;
+                min-height: 500px;
+            }
+
+            .page-text {
+                font-size: 18px;
+            }
+
+            .navigation {
+                padding: 20px;
+            }
+
+            .nav-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .cover h2 {
+                font-size: 32px;
+            }
+
+            .cover .subtitle {
+                font-size: 16px;
+            }
+
+            .cover .start-button {
+                padding: 15px 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book-header">
+            <h1>🐰 勇敢的小兔子 🌙</h1>
+            <p>一个关于勇气和成长的睡前故事</p>
+        </div>
+
+        <div class="book-meta">
+            <a href="../" class="back-link">← 返回 IMA Studio Skills</a>
+            <span>使用 Nano Banana 2 创作 • 8 页 • 48 积分</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="page-container">
+            <!-- 封面 -->
+            <div class="page cover active" id="page-0">
+                <h2>🐰 勇敢的小兔子</h2>
+                <p class="subtitle">适合 3-5 岁儿童的睡前故事</p>
+                <button class="start-button" onclick="nextPage()">开始阅读 ✨</button>
+            </div>
+
+            <!-- 第 1 页 -->
+            <div class="page" id="page-1">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/339bd6bf7c5e6977f26532563b110c4b.png" 
+                     alt="豆豆在阳光下" class="page-image" loading="lazy">
+                <div class="page-text">
+                    小兔子豆豆住在森林边的小屋里。<br>
+                    他喜欢白天的阳光，但是害怕黑暗的夜晚。
+                </div>
+                <div class="page-number">第 1 页 / 8</div>
+            </div>
+
+            <!-- 第 2 页 -->
+            <div class="page" id="page-2">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/7a273380de4355012d4ac4540d35a160.png" 
+                     alt="豆豆躲在被窝里" class="page-image" loading="lazy">
+                <div class="page-text">
+                    每当太阳落山，豆豆就会躲进被窝里。<br>
+                    他觉得黑暗中有可怕的东西。
+                </div>
+                <div class="page-number">第 2 页 / 8</div>
+            </div>
+
+            <!-- 第 3 页 -->
+            <div class="page" id="page-3">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/ec28db2930cba01fb6b19e2bd5823983.png" 
+                     alt="小亮求助" class="page-image" loading="lazy">
+                <div class="page-text">
+                    这天晚上，小萤火虫小亮飞到窗前，着急地说：<br>
+                    "豆豆，我的翅膀受伤了，你能帮我找到回家的路吗？"
+                </div>
+                <div class="page-number">第 3 页 / 8</div>
+            </div>
+
+            <!-- 第 4 页 -->
+            <div class="page" id="page-4">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/3941452a4c077d4eb9e1767be267d4d1.png" 
+                     alt="豆豆犹豫" class="page-image" loading="lazy">
+                <div class="page-text">
+                    豆豆看着窗外黑黑的夜晚，心里有点害怕。<br>
+                    但是小亮需要帮助……
+                </div>
+                <div class="page-number">第 4 页 / 8</div>
+            </div>
+
+            <!-- 第 5 页 -->
+            <div class="page" id="page-5">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/310c2563bc12a1ba98f6846098e57d06.png" 
+                     alt="豆豆勇敢前进" class="page-image" loading="lazy">
+                <div class="page-text">
+                    "我可以的！"豆豆深吸一口气，<br>
+                    牵着小亮的光，走进了夜晚的森林。
+                </div>
+                <div class="page-number">第 5 页 / 8</div>
+            </div>
+
+            <!-- 第 6 页 -->
+            <div class="page" id="page-6">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/d72a9ecaad4cd10fcb48d9f4ef70f382.png" 
+                     alt="美丽的夜晚森林" class="page-image" loading="lazy">
+                <div class="page-text">
+                    哇！夜晚的森林好美啊！<br>
+                    星星在闪烁，更多的萤火虫在跳舞，<br>
+                    月光照在树叶上，像银色的梦。
+                </div>
+                <div class="page-number">第 6 页 / 8</div>
+            </div>
+
+            <!-- 第 7 页 -->
+            <div class="page" id="page-7">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/084e8ab0055a536ffe985ef99bf474fe.png" 
+                     alt="萤火虫们庆祝" class="page-image" loading="lazy">
+                <div class="page-text">
+                    豆豆帮小亮找到了萤火虫家族。<br>
+                    大家围着他说："谢谢你，勇敢的小兔子！"
+                </div>
+                <div class="page-number">第 7 页 / 8</div>
+            </div>
+
+            <!-- 第 8 页 -->
+            <div class="page" id="page-8">
+                <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/11a79ad88494fa82e2ab2c0e29952648.png" 
+                     alt="豆豆安心入睡" class="page-image" loading="lazy">
+                <div class="page-text">
+                    回到家，豆豆看着窗外的星光，不再害怕了。<br>
+                    他知道，黑暗里也有美丽的光。<br>
+                    <br>
+                    晚安，豆豆。💤
+                </div>
+                <div class="page-number">第 8 页 / 8 - 故事结束</div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" id="prevBtn" onclick="prevPage()" disabled>
+                ← 上一页
+            </button>
+            <button class="nav-button" id="nextBtn" onclick="nextPage()">
+                下一页 →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const totalPages = 8; // 不包括封面
+
+        function updatePage() {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 显示当前页面
+            document.getElementById(`page-${currentPage}`).classList.add('active');
+
+            // 更新按钮状态
+            document.getElementById('prevBtn').disabled = currentPage === 0;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+
+            // 更新进度条
+            const progress = (currentPage / totalPages) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                updatePage();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updatePage();
+            }
+        }
+
+        // 键盘导航
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevPage();
+            } else if (e.key === 'ArrowRight') {
+                nextPage();
+            }
+        });
+
+        // 触摸滑动（移动端）
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextPage(); // 向左滑动，下一页
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevPage(); // 向右滑动，上一页
+            }
+        }
+    </script>
+</body>
+</html>

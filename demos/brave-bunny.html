@@ -27,6 +27,7 @@
     <meta name="ima:total-credits" content="48" />
     <meta name="ima:page-count" content="8" />
     <meta name="ima:creation-date" content="2026-03-13" />
+    <meta name="ima:features" content="audio, sound-effects, background-music" />
     
     <link rel="icon" href="../assets/images/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,6 +73,7 @@
             max-width: 900px;
             width: 100%;
             overflow: hidden;
+            position: relative;
         }
 
         .book-header {
@@ -79,6 +81,7 @@
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
         }
 
         .book-header h1 {
@@ -91,6 +94,46 @@
         .book-header p {
             font-size: 16px;
             opacity: 0.9;
+        }
+
+        /* 音频控制面板 */
+        .audio-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .audio-btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .audio-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        .audio-btn.active {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: white;
+        }
+
+        .audio-btn.muted {
+            opacity: 0.5;
         }
 
         .book-meta {
@@ -211,7 +254,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(90px, var(--primary-color) 0%, var(--secondary-color) 100%);
             transition: width 0.3s ease;
         }
 
@@ -251,10 +294,49 @@
             box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
         }
 
+        /* 音频提示 */
+        .audio-hint {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(102, 126, 234, 0.95);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .book-header h1 {
                 font-size: 24px;
+            }
+
+            .audio-controls {
+                top: 15px;
+                right: 15px;
+                gap: 8px;
+            }
+
+            .audio-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
             }
 
             .book-meta {
@@ -301,11 +383,21 @@
         <div class="book-header">
             <h1>🐰 勇敢的小兔子 🌙</h1>
             <p>一个关于勇气和成长的睡前故事</p>
+            
+            <!-- 音频控制按钮 -->
+            <div class="audio-controls">
+                <button class="audio-btn" id="musicBtn" onclick="toggleMusic()" title="背景音乐">
+                    🎵
+                </button>
+                <button class="audio-btn" id="soundBtn" onclick="toggleSound()" title="翻页音效">
+                    🔔
+                </button>
+            </div>
         </div>
 
         <div class="book-meta">
             <a href="../" class="back-link">← 返回 IMA Studio Skills</a>
-            <span>使用 Nano Banana 2 创作 • 8 页 • 48 积分</span>
+            <span>使用 Nano Banana 2 创作 • 8 页 • 48 积分 • 含音效 🎵</span>
         </div>
 
         <div class="progress-bar">
@@ -317,10 +409,10 @@
             <div class="page cover active" id="page-0">
                 <h2>🐰 勇敢的小兔子</h2>
                 <p class="subtitle">适合 3-5 岁儿童的睡前故事</p>
-                <button class="start-button" onclick="nextPage()">开始阅读 ✨</button>
+                <button class="start-button" onclick="startReading()">开始阅读 ✨</button>
             </div>
 
-            <!-- 第 1 页 -->
+            <!-- 第 1-8 页 -->
             <div class="page" id="page-1">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/339bd6bf7c5e6977f26532563b110c4b.png" 
                      alt="豆豆在阳光下" class="page-image" loading="lazy">
@@ -331,7 +423,6 @@
                 <div class="page-number">第 1 页 / 8</div>
             </div>
 
-            <!-- 第 2 页 -->
             <div class="page" id="page-2">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/7a273380de4355012d4ac4540d35a160.png" 
                      alt="豆豆躲在被窝里" class="page-image" loading="lazy">
@@ -342,7 +433,6 @@
                 <div class="page-number">第 2 页 / 8</div>
             </div>
 
-            <!-- 第 3 页 -->
             <div class="page" id="page-3">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/ec28db2930cba01fb6b19e2bd5823983.png" 
                      alt="小亮求助" class="page-image" loading="lazy">
@@ -353,7 +443,6 @@
                 <div class="page-number">第 3 页 / 8</div>
             </div>
 
-            <!-- 第 4 页 -->
             <div class="page" id="page-4">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/3941452a4c077d4eb9e1767be267d4d1.png" 
                      alt="豆豆犹豫" class="page-image" loading="lazy">
@@ -364,7 +453,6 @@
                 <div class="page-number">第 4 页 / 8</div>
             </div>
 
-            <!-- 第 5 页 -->
             <div class="page" id="page-5">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/310c2563bc12a1ba98f6846098e57d06.png" 
                      alt="豆豆勇敢前进" class="page-image" loading="lazy">
@@ -375,7 +463,6 @@
                 <div class="page-number">第 5 页 / 8</div>
             </div>
 
-            <!-- 第 6 页 -->
             <div class="page" id="page-6">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/d72a9ecaad4cd10fcb48d9f4ef70f382.png" 
                      alt="美丽的夜晚森林" class="page-image" loading="lazy">
@@ -387,7 +474,6 @@
                 <div class="page-number">第 6 页 / 8</div>
             </div>
 
-            <!-- 第 7 页 -->
             <div class="page" id="page-7">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/084e8ab0055a536ffe985ef99bf474fe.png" 
                      alt="萤火虫们庆祝" class="page-image" loading="lazy">
@@ -398,7 +484,6 @@
                 <div class="page-number">第 7 页 / 8</div>
             </div>
 
-            <!-- 第 8 页 -->
             <div class="page" id="page-8">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/11a79ad88494fa82e2ab2c0e29952648.png" 
                      alt="豆豆安心入睡" class="page-image" loading="lazy">
@@ -424,27 +509,171 @@
 
     <script>
         let currentPage = 0;
-        const totalPages = 8; // 不包括封面
+        const totalPages = 8;
+        
+        // 音频状态
+        let musicEnabled = false;
+        let soundEnabled = true;
+        let audioContext = null;
+        let backgroundMusic = null;
+
+        // 初始化音频上下文
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // 生成翻页音效（简单的"沙沙"声）
+        function playPageTurnSound() {
+            if (!soundEnabled) return;
+            
+            initAudio();
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // 柔和的翻页音效
+            oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        // 背景音乐（简单的音乐盒旋律）
+        function createBackgroundMusic() {
+            if (!audioContext) initAudio();
+            
+            // 创建一个简单的睡前摇篮曲旋律
+            const melody = [
+                { freq: 523.25, time: 0 },    // C5
+                { freq: 587.33, time: 0.5 },   // D5
+                { freq: 659.25, time: 1 },     // E5
+                { freq: 698.46, time: 1.5 },   // F5
+                { freq: 783.99, time: 2 },     // G5
+                { freq: 698.46, time: 2.5 },   // F5
+                { freq: 659.25, time: 3 },     // E5
+                { freq: 587.33, time: 3.5 },   // D5
+                { freq: 523.25, time: 4 }      // C5
+            ];
+            
+            return melody;
+        }
+
+        function playBackgroundMusic() {
+            if (!musicEnabled || !audioContext) return;
+            
+            const melody = createBackgroundMusic();
+            const baseTime = audioContext.currentTime;
+            
+            melody.forEach(note => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = note.freq;
+                oscillator.type = 'sine'; // 音乐盒般的纯净音色
+                
+                const startTime = baseTime + note.time;
+                gainNode.gain.setValueAtTime(0, startTime);
+                gainNode.gain.linearRampToValueAtTime(0.05, startTime + 0.05);
+                gainNode.gain.linearRampToValueAtTime(0, startTime + 0.4);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + 0.45);
+            });
+            
+            // 循环播放
+            if (musicEnabled) {
+                setTimeout(playBackgroundMusic, 5000);
+            }
+        }
+
+        // 切换背景音乐
+        function toggleMusic() {
+            initAudio();
+            musicEnabled = !musicEnabled;
+            
+            const btn = document.getElementById('musicBtn');
+            if (musicEnabled) {
+                btn.classList.add('active');
+                playBackgroundMusic();
+                showHint('🎵 背景音乐已开启');
+            } else {
+                btn.classList.remove('active');
+                showHint('🔇 背景音乐已关闭');
+            }
+        }
+
+        // 切换音效
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            
+            const btn = document.getElementById('soundBtn');
+            if (soundEnabled) {
+                btn.classList.add('active');
+                btn.classList.remove('muted');
+                showHint('🔔 翻页音效已开启');
+                playPageTurnSound(); // 播放示例音效
+            } else {
+                btn.classList.remove('active');
+                btn.classList.add('muted');
+                showHint('🔕 翻页音效已关闭');
+            }
+        }
+
+        // 显示提示
+        function showHint(text) {
+            const existing = document.querySelector('.audio-hint');
+            if (existing) existing.remove();
+            
+            const hint = document.createElement('div');
+            hint.className = 'audio-hint';
+            hint.textContent = text;
+            document.body.appendChild(hint);
+            
+            setTimeout(() => {
+                hint.style.animation = 'slideDown 0.5s ease reverse';
+                setTimeout(() => hint.remove(), 500);
+            }, 2000);
+        }
 
         function updatePage() {
-            // 隐藏所有页面
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
 
-            // 显示当前页面
             document.getElementById(`page-${currentPage}`).classList.add('active');
 
-            // 更新按钮状态
             document.getElementById('prevBtn').disabled = currentPage === 0;
             document.getElementById('nextBtn').disabled = currentPage === totalPages;
 
-            // 更新进度条
             const progress = (currentPage / totalPages) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
 
-            // 滚动到顶部
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // 播放翻页音效
+            if (currentPage > 0) {
+                playPageTurnSound();
+            }
+        }
+
+        function startReading() {
+            initAudio();
+            nextPage();
+            // 默认开启音效
+            soundEnabled = true;
+            document.getElementById('soundBtn').classList.add('active');
         }
 
         function nextPage() {
@@ -470,7 +699,7 @@
             }
         });
 
-        // 触摸滑动（移动端）
+        // 触摸滑动
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -485,12 +714,19 @@
 
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
-                nextPage(); // 向左滑动，下一页
+                nextPage();
             }
             if (touchEndX > touchStartX + 50) {
-                prevPage(); // 向右滑动，上一页
+                prevPage();
             }
         }
+
+        // 页面加载完成后的提示
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showHint('💡 提示：点击右上角可以开启音乐和音效');
+            }, 1000);
+        });
     </script>
 </body>
 </html>

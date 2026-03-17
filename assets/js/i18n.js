@@ -86,8 +86,8 @@ window.I18N = {
           slug: 'ima-sevio-ai',
           tag: 'Sevio',
           recommended: true,
-          shortDesc: '仅 Ima Sevio 1.0 与 Ima Sevio 1.0-Fast，支持文生视频、图生视频、首尾帧与参考图模式。',
-          models: 'Ima Sevio 1.0 · Ima Sevio 1.0-Fast',
+          shortDesc: 'Ima Sevio 1.0（质量优先）/ 1.0-Fast（速度优先）；支持文生视频、首帧图生、首尾帧过渡与参考图约束，适合正式出片与快速打样。',
+          models: 'Ima Sevio 1.0（Quality） · Ima Sevio 1.0-Fast（Fast）',
         },
         {
           name: 'IMA 音乐生成',
@@ -285,8 +285,8 @@ window.I18N = {
           slug: 'ima-sevio-ai',
           tag: 'Sevio',
           recommended: true,
-          shortDesc: 'Sevio-only video skill with Ima Sevio 1.0 and Ima Sevio 1.0-Fast.',
-          models: 'Ima Sevio 1.0 · Ima Sevio 1.0-Fast',
+          shortDesc: 'Ima Sevio 1.0 (quality-first) and Ima Sevio 1.0-Fast (speed-first) for text-to-video, first-frame image-to-video, first-last transition, and reference-image constrained generation.',
+          models: 'Ima Sevio 1.0 (Quality) · Ima Sevio 1.0-Fast (Fast)',
         },
         {
           name: 'IMA Music Generation',

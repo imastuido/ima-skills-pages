@@ -59,6 +59,8 @@
       var copyLabel = t.skills.copyInstall || "Git install";
       var viewLabel = t.skills.viewOnGitHub || "GitHub";
       var comingSoonLabel = t.skills.comingSoon || "敬请期待";
+      var comingSoonTitle = t.skills.joinGroupClaimTitle || "加群领取该技能";
+      var comingSoonImageAlt = t.skills.joinGroupClaimImageAlt || "Group QR code";
       var recommendedLabel = t.skills.recommended || "推荐";
       var tutorialLabel = t.skills.useTutorial || "使用教程";
       var caseShowcaseLabel = t.skills.caseShowcase || "案例展示";
@@ -69,6 +71,7 @@
             var isRecommended = !!s.recommended;
             var tutorialUrl = s.tutorialUrl || "";
             var caseUrl = s.caseUrl || "";
+            var comingSoonImage = s.comingSoonImage || "assets/images/join-group-claim-qr.png";
             var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
             var gitCloneCmd = s.installCommand || (repoBase ? "git clone " + repoUrl + ".git" : "");
             var tagHtml =
@@ -80,7 +83,13 @@
                 : "");
             var actionsHtml = "";
             if (isComingSoon) {
-              actionsHtml += '<span class="skill-comingsoon">' + escapeHtml(comingSoonLabel) + "</span>";
+              actionsHtml +=
+                '<button type="button" class="skill-comingsoon skill-comingsoon-btn"' +
+                ' data-comingsoon-image="' + escapeHtml(comingSoonImage) + '"' +
+                ' data-comingsoon-title="' + escapeHtml(comingSoonTitle) + '"' +
+                ' data-comingsoon-alt="' + escapeHtml(comingSoonImageAlt) + '">' +
+                escapeHtml(comingSoonLabel) +
+                "</button>";
               if (tutorialUrl) {
                 actionsHtml +=
                   '<a href="' +
@@ -141,6 +150,7 @@
           }
         )
         .join("");
+      syncComingSoonModalText(t);
       bindSkillCopyButtons();
     }
 
@@ -201,13 +211,25 @@
   function bindSkillCopyButtons() {
     var container = document.getElementById("skills-list");
     if (!container) return;
-    var t = window.I18N[getLang()];
-    var copiedText = (t && t.skills && t.skills.copied) ? t.skills.copied : "Copied";
+    if (container.dataset.bound === "1") return;
+    container.dataset.bound = "1";
     container.addEventListener("click", function (e) {
+      var comingSoonBtn = e.target.closest(".skill-comingsoon-btn");
+      if (comingSoonBtn) {
+        openComingSoonModal(
+          comingSoonBtn.getAttribute("data-comingsoon-image") || "assets/images/join-group-claim-qr.png",
+          comingSoonBtn.getAttribute("data-comingsoon-alt") || "Group QR code",
+          comingSoonBtn.getAttribute("data-comingsoon-title") || ""
+        );
+        return;
+      }
+
       var btn = e.target.closest(".skill-copy-btn");
       if (!btn) return;
       var cmd = btn.getAttribute("data-copy");
       if (!cmd) return;
+      var t = window.I18N[getLang()];
+      var copiedText = (t && t.skills && t.skills.copied) ? t.skills.copied : "Copied";
       if (typeof navigator.clipboard !== "undefined" && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(cmd).then(
           function () {
@@ -247,6 +269,63 @@
     document.body.removeChild(ta);
   }
 
+  function openComingSoonModal(imageSrc, imageAlt, titleText) {
+    var modal = document.getElementById("comingsoon-modal");
+    var img = document.getElementById("comingsoon-image");
+    var title = document.getElementById("comingsoon-title");
+    if (!modal || !img || !title) return;
+
+    title.textContent = titleText || title.textContent;
+    img.alt = imageAlt || img.alt;
+    img.src = imageSrc || "assets/images/join-group-claim-qr.png";
+    img.onerror = function () {
+      img.onerror = null;
+      img.src = "assets/images/join-group-claim-qr.png";
+    };
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeComingSoonModal() {
+    var modal = document.getElementById("comingsoon-modal");
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  function syncComingSoonModalText(t) {
+    var title = document.getElementById("comingsoon-title");
+    var img = document.getElementById("comingsoon-image");
+    var closeBtn = document.getElementById("comingsoon-close");
+    if (title && t && t.skills && t.skills.joinGroupClaimTitle) {
+      title.textContent = t.skills.joinGroupClaimTitle;
+    }
+    if (img && t && t.skills && t.skills.joinGroupClaimImageAlt) {
+      img.alt = t.skills.joinGroupClaimImageAlt;
+    }
+    if (closeBtn && t && t.skills && t.skills.close) {
+      closeBtn.setAttribute("aria-label", t.skills.close);
+      closeBtn.title = t.skills.close;
+    }
+  }
+
+  function bindComingSoonModal() {
+    var modal = document.getElementById("comingsoon-modal");
+    if (!modal || modal.dataset.bound === "1") return;
+    modal.dataset.bound = "1";
+    modal.addEventListener("click", function (e) {
+      if (e.target.closest("[data-close-comingsoon]")) {
+        closeComingSoonModal();
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeComingSoonModal();
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var lang = getLang();
     document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
@@ -258,6 +337,7 @@
       btn.classList.toggle("active", btn.dataset.lang === lang);
     });
 
+    bindComingSoonModal();
     render(lang);
   });
 

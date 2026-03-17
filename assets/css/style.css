@@ -371,6 +371,16 @@ section {
   border: 1px solid rgba(251, 191, 36, 0.35);
 }
 
+.skill-comingsoon-btn {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.skill-comingsoon-btn:hover {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.6);
+}
+
 .skill-case-link {
   border-color: rgba(99, 102, 241, 0.35);
   color: var(--accent);
@@ -445,6 +455,81 @@ section {
 
 .skill-repo-url:hover {
   color: var(--accent);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.comingsoon-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 999;
+}
+
+.comingsoon-modal.open {
+  display: block;
+}
+
+.comingsoon-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.comingsoon-modal-panel {
+  position: relative;
+  width: min(92vw, 760px);
+  max-height: 92vh;
+  margin: 4vh auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.comingsoon-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  color: #111827;
+  background: rgba(17, 24, 39, 0.08);
+}
+
+.comingsoon-close:hover {
+  background: rgba(17, 24, 39, 0.16);
+}
+
+.comingsoon-frame {
+  padding: 18px;
+  border: 10px solid #111827;
+  border-radius: 14px;
+  margin: 14px;
+  text-align: center;
+}
+
+.comingsoon-frame h3 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.comingsoon-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
 /* 纯 HTML 技能列表：供 fetch/readability 提取，不依赖 JS */

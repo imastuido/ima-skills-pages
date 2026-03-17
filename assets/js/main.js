@@ -57,7 +57,6 @@
     if (skillsContainer && t.skills && t.skills.list) {
       var repoBase = (t.skills.repoBaseUrl || "").replace(/\/$/, "");
       var copyLabel = t.skills.copyInstall || "Git install";
-      var copyClawhubLabel = t.skills.copyClawhub || "Clawhub install";
       var viewLabel = t.skills.viewOnGitHub || "GitHub";
       var comingSoonLabel = t.skills.comingSoon || "敬请期待";
       var tutorialLabel = t.skills.useTutorial || "使用教程";
@@ -69,8 +68,7 @@
             var tutorialUrl = s.tutorialUrl || "";
             var caseUrl = s.caseUrl || "";
             var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
-            var gitCloneCmd = repoBase ? "git clone " + repoUrl + ".git" : "";
-            var clawhubCmd = "clawhub install " + s.slug;
+            var gitCloneCmd = s.installCommand || (repoBase ? "git clone " + repoUrl + ".git" : "");
             var actionsHtml = "";
             if (isComingSoon) {
               actionsHtml += '<span class="skill-comingsoon">' + escapeHtml(comingSoonLabel) + "</span>";
@@ -101,13 +99,6 @@
                       escapeHtml(copyLabel) +
                       "</button>")
                   : "") +
-                '<button type="button" class="skill-copy-btn skill-copy-btn-clawhub" data-copy="' +
-                escapeHtml(clawhubCmd) +
-                '" title="' +
-                escapeHtml(clawhubCmd) +
-                '">' +
-                escapeHtml(copyClawhubLabel) +
-                "</button>" +
                 '<a href="' +
                 escapeHtml(repoUrl) +
                 '" target="_blank" rel="noopener" class="skill-repo-link">' +

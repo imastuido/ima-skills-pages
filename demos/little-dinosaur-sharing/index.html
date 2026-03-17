@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="小恐龙学会分享 - 有声绘本静态版">
+    <script>
+      (function () {
+        var path = window.location.pathname || "";
+        var hasExt = /\/[^/]+\.[^/]+$/.test(path);
+        if (
+          window.location.protocol !== "file:" &&
+          !hasExt &&
+          !path.endsWith("/")
+        ) {
+          window.location.replace(path + "/" + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+    <title>小恐龙学会分享</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="book-header">
+            <h1 class="book-title">小恐龙学会分享</h1>
+            <p class="book-subtitle">适合年龄：3-5 岁</p>
+            <p class="book-info">共 12 页 | 有声阅读</p>
+        </header>
+
+        <!-- Page Container -->
+        <div class="page-container">
+
+            <div class="page active" data-page="0">
+                <div class="page-content">
+                    <div class="page-number">第 1 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_01.png" 
+                             alt="第1页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_01.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>小恐龙多多有很多玩具。他最喜欢红色的小汽车。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="1">
+                <div class="page-content">
+                    <div class="page-number">第 2 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_02.png" 
+                             alt="第2页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_02.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>多多，我可以一起玩吗？小熊贝贝来了。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="2">
+                <div class="page-content">
+                    <div class="page-number">第 3 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_03.png" 
+                             alt="第3页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_03.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>不行！这是我的！多多抱紧了小汽车。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="3">
+                <div class="page-content">
+                    <div class="page-number">第 4 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_04.png" 
+                             alt="第4页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_04.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>贝贝难过地走了。我不想和你玩了。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="4">
+                <div class="page-content">
+                    <div class="page-number">第 5 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_05.png" 
+                             alt="第5页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_05.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>多多一个人玩。好无聊啊。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="5">
+                <div class="page-content">
+                    <div class="page-number">第 6 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_06.png" 
+                             alt="第6页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_06.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>要是贝贝在就好了。多多想起了好朋友。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="6">
+                <div class="page-content">
+                    <div class="page-number">第 7 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_07.png" 
+                             alt="第7页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_07.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>我要去找贝贝！多多拿起了小汽车。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="7">
+                <div class="page-content">
+                    <div class="page-number">第 8 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_08.png" 
+                             alt="第8页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_08.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>贝贝，我们一起玩吧！多多把小汽车递给贝贝。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="8">
+                <div class="page-content">
+                    <div class="page-number">第 9 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_09.png" 
+                             alt="第9页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_09.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>哇，谢谢你！他们一起玩小汽车，真开心！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="9">
+                <div class="page-content">
+                    <div class="page-number">第 10 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_10.png" 
+                             alt="第10页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_10.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>我们还可以一起玩积木！分享真有趣！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="10">
+                <div class="page-content">
+                    <div class="page-number">第 11 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_11.png" 
+                             alt="第11页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_11.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>一起玩，比一个人玩更开心！多多学会了分享。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page " data-page="11">
+                <div class="page-content">
+                    <div class="page-number">第 12 页</div>
+                    
+                    <div class="page-image-wrapper">
+                        <img src="images/page_12.png" 
+                             alt="第12页插画" 
+                             class="page-image"
+                             onerror="this.src='images/placeholder.svg'">
+                    </div>
+                    
+                    <div class="page-audio-wrapper">
+                        <audio controls preload="metadata" class="page-audio">
+                            <source src="audio/page_12.mp3" type="audio/mpeg">
+                            您的浏览器不支持音频播放。
+                        </audio>
+                    </div>
+                    
+                    <div class="page-caption">
+                        <p>从那天起，多多和贝贝成了最好的朋友。他们一起分享，一起快乐。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+        <nav class="page-nav">
+            <button id="prev-btn" class="nav-btn" disabled>
+                <span>←</span> 上一页
+            </button>
+            
+            <div class="page-indicator">
+                <span id="current-page">1</span> / <span id="total-pages">12</span>
+            </div>
+            
+            <button id="next-btn" class="nav-btn">
+                下一页 <span>→</span>
+            </button>
+        </nav>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="auto-play-btn" class="control-btn">
+                <span class="icon">▶</span> 自动播放
+            </button>
+            <button id="fullscreen-btn" class="control-btn">
+                <span class="icon">⛶</span> 全屏
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="book-footer">
+            <p>Powered by <strong>Fairytale Picturebook Pro</strong></p>
+            <p class="disclaimer">本绘本由 AI 生成，仅供个人学习和娱乐使用。</p>
+        </footer>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

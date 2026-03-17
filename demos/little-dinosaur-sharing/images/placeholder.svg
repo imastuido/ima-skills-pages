@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="图片加载中">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2f5ff" />
+      <stop offset="100%" stop-color="#e7ecff" />
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#g)" />
+  <g fill="none" stroke="#97a4e8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+    <rect x="238" y="280" width="548" height="420" rx="28" />
+    <path d="M300 620l138-142 108 108 84-86 94 120" />
+    <circle cx="402" cy="394" r="36" />
+  </g>
+  <text x="50%" y="77%" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="42" fill="#6271c8">
+    图片加载中
+  </text>
+</svg>

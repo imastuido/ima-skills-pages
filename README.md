@@ -44,7 +44,7 @@ python3 -m http.server 8000
 ```
 ima-skills-pages/
 ├── index.html          # 单页入口，中英切换由 JS 注入
-├── manage.html         # 技能案例管理页（静态 CRUD + 导入导出）
+├── manage.html         # 技能案例导航页（工具技能/专业技能分组 + 卡片 + 多案例入口）
 ├── 404.html            # 404 页（含 noindex 利于 SEO）
 ├── robots.txt          # 爬虫规则与 Sitemap 地址
 ├── sitemap.xml         # 站点地图，便于搜索引擎收录
@@ -54,8 +54,10 @@ ima-skills-pages/
 │   └── js/
 │       ├── i18n.js     # 中英文案
 │       ├── main.js     # 语言切换与渲染
-│       ├── cases-core.mjs    # 案例数据模型/校验/导入导出核心
-│       └── cases-manager.mjs # 管理页交互逻辑
+│       ├── cases-core.mjs          # 案例数据模型/校验/导入导出核心（历史）
+│       ├── manage-showcase-core.mjs # 技能分组与案例链接归一化逻辑
+│       ├── cases-manager.mjs       # 管理页交互逻辑（历史）
+│       └── manage-showcase.mjs     # 技能案例导航页渲染逻辑
 ├── test/
 │   └── cases-core.test.mjs   # 核心逻辑测试
 └── README.md
@@ -83,12 +85,12 @@ ima-skills-pages/
 
 ---
 
-## 案例管理页 / Case Management
+## 案例导航页 / Case Showcase
 
-- 访问 `manage.html` 进入技能案例管理页。
-- 支持：新增、编辑、删除、关键词搜索、按技能/状态筛选。
-- 数据存储在浏览器 `localStorage`（键名：`ima-skills-cases-v1`）。
-- 支持 `JSON` 导入导出，便于团队共享与版本化管理。
+- 访问 `manage.html` 进入技能案例导航页。
+- 支持按 `工具技能｜专业技能` 分类切换。
+- 技能以卡片展示，每个技能可挂多个案例链接并分别点击访问。
+- 例如：`绘本漫画` 技能包含 `demos/brave-bunny.html`、`demos/fairytale-picturebook-pro-tutorial.html`。
 
 运行测试：
 
@@ -110,7 +112,8 @@ node --test test/cases-core.test.mjs
 | IMA Knowledge AI  | ima-knowledge-ai   | 工作流与模型选择知识库 |
 | IMA Nano Banana   | ai-nano-banana-ima | 仅 Nano Banana 系列图像 |
 
-安装方式：在 [ClawHub](https://claw-hub.net) 或 OpenClaw 中搜索上述 **slug** 或「IMA」即可。
+安装方式（推荐）：直接从 GitHub `git clone`。  
+重要：安装 `ima-all-ai` 时，请务必同时安装 `ima-knowledge-ai`，以获得更稳定的模型选择与工作流效果。
 
 ---
 

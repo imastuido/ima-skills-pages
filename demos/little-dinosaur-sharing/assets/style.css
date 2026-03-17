@@ -1,0 +1,241 @@
+/* Fairytale Picturebook Pro - Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Header */
+.book-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.book-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.book-subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.book-info {
+    font-size: 0.95em;
+    opacity: 0.8;
+}
+
+/* Page Container */
+.page-container {
+    position: relative;
+    min-height: 500px;
+    padding: 40px 20px;
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.page-number {
+    text-align: center;
+    font-size: 1.2em;
+    color: #667eea;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.page-image-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.page-image:hover {
+    transform: scale(1.02);
+}
+
+.page-audio-wrapper {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.page-audio {
+    width: 100%;
+    max-width: 500px;
+    outline: none;
+}
+
+.page-caption {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.page-caption p {
+    font-size: 1.3em;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Navigation */
+.page-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-top: 1px solid #e9ecef;
+}
+
+.nav-btn {
+    padding: 12px 24px;
+    font-size: 1em;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.page-indicator {
+    font-size: 1.1em;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.control-btn {
+    padding: 10px 20px;
+    font-size: 0.95em;
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.control-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.control-btn .icon {
+    margin-right: 5px;
+}
+
+/* Footer */
+.book-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    color: #6c757d;
+}
+
+.book-footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.disclaimer {
+    font-size: 0.8em !important;
+    color: #adb5bd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .book-title {
+        font-size: 1.8em;
+    }
+    
+    .page-nav {
+        padding: 15px 20px;
+    }
+    
+    .nav-btn {
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+    
+    .page-caption p {
+        font-size: 1.1em;
+    }
+}

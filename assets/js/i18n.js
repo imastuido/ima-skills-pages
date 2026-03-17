@@ -7,7 +7,7 @@ window.I18N = {
       features: '能力与优势',
       skills: '技能列表',
       how: '使用方式',
-      manage: '案例管理',
+      manage: '案例导航',
       cta: '开始使用',
     },
     hero: {
@@ -58,8 +58,9 @@ window.I18N = {
           name: 'IMA Studio',
           slug: 'ima-all-ai',
           tag: '一站式',
-          shortDesc: '图像、视频、音乐、TTS 全能力统一入口，多模型智能调度与工作流编排。',
+          shortDesc: '图像、视频、音乐、TTS 全能力统一入口；安装时务必同时安装 ima-knowledge-ai。',
           models: 'SeeDream · Midjourney · Nano Banana · Wan · Kling · Veo · Sora · Suno · DouBao · TTS',
+          installCommand: 'git clone https://github.com/imastuido/ima-knowledge-ai.git\ngit clone https://github.com/imastuido/ima-all-ai.git',
         },
         {
           name: 'IMA 图像生成',
@@ -114,13 +115,13 @@ window.I18N = {
           caseUrl: 'demos/brave-bunny.html',
         },
       ],
-      installHint: '每个技能卡片上均有 GitHub 仓库地址与「GITHUB 安装」按钮（复制 git clone 命令），可直接用 git clone 或 curl 从 GitHub 拉取，无需经 ClawHub。下方另有纯文本列表供爬虫/无 JS 环境使用。使用前请阅读 ima-knowledge-ai。',
+      installHint: '每个技能卡片上均有 GitHub 仓库地址与「GITHUB 安装」按钮（复制 git clone 命令）。建议全部通过 GitHub 安装；安装 ima-all-ai 时务必同时安装 ima-knowledge-ai。下方另有纯文本列表供爬虫/无 JS 环境使用。',
     },
     how: {
       title: '使用方式',
       subtitle: '安装技能后，在 Agent 中通过自然语言或脚本调用即可',
       steps: [
-        { step: '1', title: '安装技能', desc: '在 ClawHub / OpenClaw 或 Cursor 技能目录中搜索「IMA」或技能 slug，安装所需技能。' },
+        { step: '1', title: '安装技能', desc: '优先用 GitHub 安装（git clone）。安装 ima-all-ai 时请同时安装 ima-knowledge-ai。' },
         { step: '2', title: '配置 API Key', desc: '获取 IMA API Key（imaclaw.ai），在环境中配置 IMA_API_KEY。' },
         { step: '3', title: '先读知识库', desc: '复杂任务（MV、多镜头、角色一致）建议先让 Agent 阅读 ima-knowledge-ai 中的相关文档。' },
         { step: '4', title: '发起创作', desc: '用自然语言描述需求，如「用 SeeDream 画一只柴犬」「用 Kling 把这张图做成 5 秒视频」。' },
@@ -142,7 +143,7 @@ window.I18N = {
       features: 'Features',
       skills: 'Skills',
       how: 'How to Use',
-      manage: 'Cases Admin',
+      manage: 'Case Showcase',
       cta: 'Get Started',
     },
     hero: {
@@ -193,8 +194,9 @@ window.I18N = {
           name: 'IMA Studio',
           slug: 'ima-all-ai',
           tag: 'All-in-one',
-          shortDesc: 'Unified image, video, music, and TTS with multi-model orchestration and workflow support.',
+          shortDesc: 'Unified image, video, music, and TTS; always install ima-knowledge-ai together with ima-all-ai.',
           models: 'SeeDream · Midjourney · Nano Banana · Wan · Kling · Veo · Sora · Suno · DouBao · TTS',
+          installCommand: 'git clone https://github.com/imastuido/ima-knowledge-ai.git\ngit clone https://github.com/imastuido/ima-all-ai.git',
         },
         {
           name: 'IMA Image Generation',
@@ -249,13 +251,13 @@ window.I18N = {
           caseUrl: 'demos/brave-bunny.html',
         },
       ],
-      installHint: 'Each skill card shows the GitHub repo URL and a "GITHUB install" button (copies git clone command). You can git clone or curl from GitHub directly without ClawHub. A plain-text list below is available for crawlers / no-JS. Read ima-knowledge-ai before use.',
+      installHint: 'Each skill card shows the GitHub repo URL and a "GITHUB install" button (copies git clone command). Prefer GitHub installation for all skills, and always install ima-knowledge-ai together when installing ima-all-ai.',
     },
     how: {
       title: 'How to Use',
       subtitle: 'After installing, invoke via natural language or scripts in your agent',
       steps: [
-        { step: '1', title: 'Install skills', desc: 'Search for "IMA" or the skill slug in ClawHub, OpenClaw, or Cursor skills; install what you need.' },
+        { step: '1', title: 'Install skills', desc: 'Prefer GitHub install (git clone). When installing ima-all-ai, also install ima-knowledge-ai.' },
         { step: '2', title: 'Set API key', desc: 'Get an IMA API key (imaclaw.ai) and set IMA_API_KEY in your environment.' },
         { step: '3', title: 'Read the knowledge base', desc: 'For complex tasks (MV, multi-shot, character consistency), have the agent read relevant ima-knowledge-ai docs first.' },
         { step: '4', title: 'Create', desc: 'Describe in natural language, e.g. "Draw a Shiba Inu with SeeDream" or "Turn this image into a 5s video with Kling".' },

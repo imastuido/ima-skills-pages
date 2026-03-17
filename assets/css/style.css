@@ -612,6 +612,115 @@ section {
   color: var(--text-muted);
 }
 
+.manage-showcase-toolbar {
+  margin-top: 20px;
+}
+
+.manage-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+}
+
+.manage-tab {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.manage-tab:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.manage-tab.active {
+  color: #fff;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.manage-showcase-grid-wrap {
+  margin-top: 16px;
+}
+
+.manage-skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.skill-showcase-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+}
+
+.skill-showcase-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.skill-showcase-desc {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.skill-showcase-meta {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+}
+
+.skill-showcase-case-title {
+  margin: 14px 0 8px;
+  font-size: 0.86rem;
+  color: var(--text);
+}
+
+.skill-case-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-case-item {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: var(--accent);
+  background: rgba(99, 102, 241, 0.08);
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.skill-case-item:hover {
+  border-color: var(--accent);
+  color: #c7d2fe;
+  background: rgba(99, 102, 241, 0.16);
+}
+
+.skill-case-empty {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
 .manage-toolbar {
   margin-top: 20px;
   padding: 16px;

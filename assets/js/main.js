@@ -59,16 +59,25 @@
       var copyLabel = t.skills.copyInstall || "Git install";
       var viewLabel = t.skills.viewOnGitHub || "GitHub";
       var comingSoonLabel = t.skills.comingSoon || "敬请期待";
+      var recommendedLabel = t.skills.recommended || "推荐";
       var tutorialLabel = t.skills.useTutorial || "使用教程";
       var caseShowcaseLabel = t.skills.caseShowcase || "案例展示";
       skillsContainer.innerHTML = t.skills.list
         .map(
           function (s) {
             var isComingSoon = !!s.comingSoon;
+            var isRecommended = !!s.recommended;
             var tutorialUrl = s.tutorialUrl || "";
             var caseUrl = s.caseUrl || "";
             var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
             var gitCloneCmd = s.installCommand || (repoBase ? "git clone " + repoUrl + ".git" : "");
+            var tagHtml =
+              '<span class="skill-tag">' +
+              escapeHtml(s.tag) +
+              "</span>" +
+              (isRecommended
+                ? ('<span class="skill-recommended">' + escapeHtml(recommendedLabel) + "</span>")
+                : "");
             var actionsHtml = "";
             if (isComingSoon) {
               actionsHtml += '<span class="skill-comingsoon">' + escapeHtml(comingSoonLabel) + "</span>";
@@ -107,9 +116,7 @@
             }
             return (
               '<div class="skill-card">' +
-              '<span class="skill-tag">' +
-              escapeHtml(s.tag) +
-              "</span>" +
+              tagHtml +
               "<h3>" +
               escapeHtml(s.name) +
               "</h3>" +

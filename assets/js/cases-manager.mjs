@@ -12,6 +12,7 @@ const SKILLS = [
   { slug: "ima-all-ai", name: "IMA Studio" },
   { slug: "ima-image-ai", name: "IMA 图像生成" },
   { slug: "ima-video-ai", name: "IMA 视频生成" },
+  { slug: "ima-sevio-ai", name: "IMA Sevio 视频生成" },
   { slug: "ima-voice-ai", name: "IMA 音乐生成" },
   { slug: "ima-tts-ai", name: "IMA TTS" },
   { slug: "ima-knowledge-ai", name: "IMA Knowledge AI" },

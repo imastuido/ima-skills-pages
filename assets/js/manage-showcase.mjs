@@ -9,6 +9,7 @@ const SECTION_MAP = {
   'ima-all-ai': 'tool',
   'ima-image-ai': 'tool',
   'ima-video-ai': 'tool',
+  'ima-sevio-ai': 'tool',
   'ima-voice-ai': 'tool',
   'ima-tts-ai': 'tool',
   'ima-knowledge-ai': 'tool',

@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="IMA Studio Skills 创作演示 - 查看使用 IMA Studio 技能包创作的示例作品和互动演示。">
+    <script>
+      (function () {
+        var path = window.location.pathname || "";
+        var hasExt = /\/[^/]+\.[^/]+$/.test(path);
+        if (
+          window.location.protocol !== "file:" &&
+          !hasExt &&
+          !path.endsWith("/")
+        ) {
+          window.location.replace(path + "/" + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
     <title>创作演示 - IMA Studio Skills | Demos & Examples</title>
     <link rel="canonical" href="https://imastuido.github.io/ima-skills-pages/demos/" />
     
@@ -178,8 +191,9 @@
 
         <div class="demos-grid">
             <!-- 勇敢的小兔子 -->
-            <a href="brave-bunny.html" class="demo-card">
+            <a href="./brave-bunny.html" class="demo-card">
                 <img src="https://ws.esxscloud.com/aiagent/src/d/20260313/in/339bd6bf7c5e6977f26532563b110c4b.png" 
+                     onerror="this.src='../assets/images/logo.png'"
                      alt="勇敢的小兔子" class="demo-thumbnail">
                 <div class="demo-content">
                     <h3 class="demo-title">🐰 勇敢的小兔子</h3>
@@ -197,8 +211,9 @@
             </a>
 
             <!-- 小恐龙学会分享 -->
-            <a href="little-dinosaur-sharing/index.html" class="demo-card">
-                <img src="little-dinosaur-sharing/images/page_01.png"
+            <a href="./little-dinosaur-sharing/index.html" class="demo-card">
+                <img src="./little-dinosaur-sharing/images/page_01.png"
+                     onerror="this.src='../assets/images/logo.png'"
                      alt="小恐龙学会分享" class="demo-thumbnail">
                 <div class="demo-content">
                     <h3 class="demo-title">🦖 小恐龙学会分享</h3>

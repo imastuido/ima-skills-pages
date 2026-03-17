@@ -77,6 +77,13 @@ window.I18N = {
           models: 'Wan 2.6 · Kling O1/2.6 · Veo 3.1 · Sora 2 Pro · Pixverse · SeeDance',
         },
         {
+          name: 'IMA Sevio 视频生成',
+          slug: 'ima-sevio-ai',
+          tag: 'Sevio',
+          shortDesc: '仅 Ima Sevio 1.0 与 Ima Sevio 1.0-Fast，支持文生视频、图生视频、首尾帧与参考图模式。',
+          models: 'Ima Sevio 1.0 · Ima Sevio 1.0-Fast',
+        },
+        {
           name: 'IMA 音乐生成',
           slug: 'ima-voice-ai',
           tag: '音乐',
@@ -211,6 +218,13 @@ window.I18N = {
           tag: 'Video',
           shortDesc: 'Text-to-video and image-to-video with Wan 2.6, Kling, Veo, Sora, Pixverse; character consistency supported.',
           models: 'Wan 2.6 · Kling O1/2.6 · Veo 3.1 · Sora 2 Pro · Pixverse · SeeDance',
+        },
+        {
+          name: 'IMA Sevio Video Generation',
+          slug: 'ima-sevio-ai',
+          tag: 'Sevio',
+          shortDesc: 'Sevio-only video skill with Ima Sevio 1.0 and Ima Sevio 1.0-Fast.',
+          models: 'Ima Sevio 1.0 · Ima Sevio 1.0-Fast',
         },
         {
           name: 'IMA Music Generation',

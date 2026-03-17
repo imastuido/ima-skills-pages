@@ -107,6 +107,7 @@ node --test test/cases-core.test.mjs
 | IMA Studio        | ima-all-ai         | 一站式图像 / 视频 / 音乐 / TTS |
 | IMA 图像生成      | ima-image-ai       | SeeDream、Midjourney、Nano Banana |
 | IMA 视频生成      | ima-video-ai       | Wan、Kling、Veo、Sora、Pixverse |
+| IMA Sevio 视频生成 | ima-sevio-ai      | Ima Sevio 1.0 / 1.0-Fast 视频生成 |
 | IMA 音乐生成      | ima-voice-ai       | Suno、DouBao BGM/Song |
 | IMA TTS           | ima-tts-ai         | 文字转语音 |
 | IMA Knowledge AI  | ima-knowledge-ai   | 工作流与模型选择知识库 |

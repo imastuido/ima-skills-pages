@@ -68,6 +68,15 @@ window.I18N = {
           installCommand: 'git clone https://github.com/imastuido/ima-knowledge-ai.git\ngit clone https://github.com/imastuido/ima-all-ai.git',
         },
         {
+          name: 'IMA Seedance 2.0 Video Generator',
+          slug: 'ima-seedance2.0-video-generator',
+          tag: 'Seedance',
+          shortDesc: 'Seedance 2.0（ima-pro，质量优先）/ Seedance 2.0 Fast（ima-pro-fast，速度优先）；支持文生视频、图生视频、首尾帧过渡，以及图/视频/音频参考视频生成。',
+          models: 'Seedance 2.0（ima-pro） · Seedance 2.0 Fast（ima-pro-fast）',
+          tutorialUrl: 'demos/ima-seedance2-video-generator-tutorial.html',
+          caseUrl: 'manage.html',
+        },
+        {
           name: 'IMA 图像生成',
           slug: 'ima-image-ai',
           tag: '图像',
@@ -265,6 +274,15 @@ window.I18N = {
           shortDesc: 'Unified image, video, music, and TTS; always install ima-knowledge-ai together with ima-all-ai.',
           models: 'SeeDream · Midjourney · Nano Banana · Wan · Kling · Veo · Sora · Suno · DouBao · TTS',
           installCommand: 'git clone https://github.com/imastuido/ima-knowledge-ai.git\ngit clone https://github.com/imastuido/ima-all-ai.git',
+        },
+        {
+          name: 'IMA Seedance 2.0 Video Generator',
+          slug: 'ima-seedance2.0-video-generator',
+          tag: 'Seedance',
+          shortDesc: 'Seedance 2.0 (ima-pro) for quality-first output and Seedance 2.0 Fast (ima-pro-fast) for faster iteration across text-to-video, image-to-video, first-last-frame, and reference-media workflows.',
+          models: 'Seedance 2.0 (ima-pro) · Seedance 2.0 Fast (ima-pro-fast)',
+          tutorialUrl: 'demos/ima-seedance2-video-generator-tutorial.html',
+          caseUrl: 'manage.html',
         },
         {
           name: 'IMA Image Generation',

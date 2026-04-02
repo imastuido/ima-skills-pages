@@ -10,6 +10,7 @@ const SECTION_MAP = {
   'ima-image-ai': 'tool',
   'ima-video-ai': 'tool',
   'ima-sevio-ai': 'tool',
+  'ima-seedance2.0-video-generator': 'tool',
   'ima-voice-ai': 'tool',
   'ima-tts-ai': 'tool',
   'ima-knowledge-ai': 'tool',
@@ -18,6 +19,13 @@ const SECTION_MAP = {
 };
 
 const CASES_MAP = {
+  'ima-seedance2.0-video-generator': [
+    { title: '教程总览', url: 'demos/ima-seedance2-video-generator-tutorial.html' },
+    { title: 'Text to Video', url: 'demos/ima-seedance2-video-generator-tutorial.html#text-to-video' },
+    { title: 'Image to Video', url: 'demos/ima-seedance2-video-generator-tutorial.html#image-to-video' },
+    { title: 'First-Last-Frame', url: 'demos/ima-seedance2-video-generator-tutorial.html#first-last-frame' },
+    { title: 'Reference Media', url: 'demos/ima-seedance2-video-generator-tutorial.html#reference-media' },
+  ],
   'fairytale-picturebook-pro': [
     { title: '勇敢兔兔', url: 'demos/brave-bunny.html' },
     { title: '小恐龙学会分享（有声绘本）', url: 'demos/little-dinosaur-sharing/index.html' },

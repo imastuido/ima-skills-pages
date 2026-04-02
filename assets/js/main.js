@@ -1,3 +1,5 @@
+import { renderSkillCard } from "./skills-card-core.mjs";
+
 (function () {
   const STORAGE_KEY = "ima-skills-lang";
   const DEFAULT_LANG = "zh";
@@ -56,99 +58,24 @@
     var skillsContainer = document.getElementById("skills-list");
     if (skillsContainer && t.skills && t.skills.list) {
       var repoBase = (t.skills.repoBaseUrl || "").replace(/\/$/, "");
-      var copyLabel = t.skills.copyInstall || "Git install";
-      var viewLabel = t.skills.viewOnGitHub || "GitHub";
-      var comingSoonLabel = t.skills.comingSoon || "敬请期待";
-      var comingSoonTitle = t.skills.joinGroupClaimTitle || "加群领取该技能";
-      var comingSoonImageAlt = t.skills.joinGroupClaimImageAlt || "Group QR code";
-      var recommendedLabel = t.skills.recommended || "推荐";
-      var tutorialLabel = t.skills.useTutorial || "使用教程";
-      var caseShowcaseLabel = t.skills.caseShowcase || "案例展示";
+      var labels = {
+        copyLabel: t.skills.copyInstall || "Git install",
+        viewLabel: t.skills.viewOnGitHub || "GitHub",
+        comingSoonLabel: t.skills.comingSoon || "敬请期待",
+        comingSoonTitle: t.skills.joinGroupClaimTitle || "加群领取该技能",
+        comingSoonImageAlt: t.skills.joinGroupClaimImageAlt || "Group QR code",
+        recommendedLabel: t.skills.recommended || "推荐",
+        tutorialLabel: t.skills.useTutorial || "使用教程",
+        caseShowcaseLabel: t.skills.caseShowcase || "案例展示",
+      };
       skillsContainer.innerHTML = t.skills.list
-        .map(
-          function (s) {
-            var isComingSoon = !!s.comingSoon;
-            var isRecommended = !!s.recommended;
-            var tutorialUrl = s.tutorialUrl || "";
-            var caseUrl = s.caseUrl || "";
-            var comingSoonImage = s.comingSoonImage || "assets/images/join-group-claim-qr.png";
-            var repoUrl = repoBase ? repoBase + "/" + s.slug : "#";
-            var gitCloneCmd = s.installCommand || (repoBase ? "git clone " + repoUrl + ".git" : "");
-            var tagHtml =
-              '<span class="skill-tag">' +
-              escapeHtml(s.tag) +
-              "</span>" +
-              (isRecommended
-                ? ('<span class="skill-recommended">' + escapeHtml(recommendedLabel) + "</span>")
-                : "");
-            var actionsHtml = "";
-            if (isComingSoon) {
-              actionsHtml +=
-                '<button type="button" class="skill-comingsoon skill-comingsoon-btn"' +
-                ' data-comingsoon-image="' + escapeHtml(comingSoonImage) + '"' +
-                ' data-comingsoon-title="' + escapeHtml(comingSoonTitle) + '"' +
-                ' data-comingsoon-alt="' + escapeHtml(comingSoonImageAlt) + '">' +
-                escapeHtml(comingSoonLabel) +
-                "</button>";
-              if (tutorialUrl) {
-                actionsHtml +=
-                  '<a href="' +
-                  escapeHtml(tutorialUrl) +
-                  '" class="skill-repo-link skill-tutorial-link">' +
-                  escapeHtml(tutorialLabel) +
-                  "</a>";
-              }
-              if (caseUrl) {
-                actionsHtml +=
-                  '<a href="' +
-                  escapeHtml(caseUrl) +
-                  '" class="skill-repo-link skill-case-link">' +
-                  escapeHtml(caseShowcaseLabel) +
-                  "</a>";
-              }
-            } else {
-              actionsHtml +=
-                (gitCloneCmd
-                  ? ('<button type="button" class="skill-copy-btn" data-copy="' +
-                      escapeHtml(gitCloneCmd) +
-                      '" title="' +
-                      escapeHtml(gitCloneCmd) +
-                      '">' +
-                      escapeHtml(copyLabel) +
-                      "</button>")
-                  : "") +
-                '<a href="' +
-                escapeHtml(repoUrl) +
-                '" target="_blank" rel="noopener" class="skill-repo-link">' +
-                escapeHtml(viewLabel) +
-                "</a>";
-            }
-            return (
-              '<div class="skill-card">' +
-              tagHtml +
-              "<h3>" +
-              escapeHtml(s.name) +
-              "</h3>" +
-              "<p>" +
-              escapeHtml(s.shortDesc) +
-              "</p>" +
-              '<div class="skill-models">' +
-              escapeHtml(s.models) +
-              "</div>" +
-              (!isComingSoon && repoUrl !== "#"
-                ? ('<p class="skill-repo-url-wrap"><a href="' +
-                    escapeHtml(repoUrl) +
-                    '" target="_blank" rel="noopener" class="skill-repo-url">' +
-                    escapeHtml(repoUrl) +
-                    "</a></p>")
-                : "") +
-              '<div class="skill-actions">' +
-              actionsHtml +
-              "</div>" +
-              "</div>"
-            );
-          }
-        )
+        .map(function (s) {
+          return renderSkillCard({
+            skill: s,
+            repoBase: repoBase,
+            labels: labels,
+          });
+        })
         .join("");
       syncComingSoonModalText(t);
       bindSkillCopyButtons();

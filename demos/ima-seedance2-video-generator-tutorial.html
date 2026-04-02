@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IMA Seedance 2.0 Video Generator 教程：文生视频、图生视频、首尾帧过渡与多模态参考视频工作流。" />
+  <title>IMA Seedance 2.0 Video Generator 教程</title>
+  <link rel="icon" href="../assets/images/logo.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .tutorial-wrap { padding: 48px 0 64px; }
+    .tutorial-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 14px; }
+    .tutorial-card h2 { margin: 0 0 10px; font-size: 1.06rem; }
+    .tutorial-card p, .tutorial-card li { color: var(--text-muted); }
+    .tutorial-card ul, .tutorial-card ol { margin: 0; padding-left: 1.2rem; }
+    .tutorial-anchor-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 16px; }
+    .tutorial-anchor-list a { display: block; text-decoration: none; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; color: var(--text); background: var(--bg-card); }
+    .tutorial-anchor-list a:hover { border-color: var(--accent); color: var(--accent); }
+    .tutorial-code { font-family: var(--font-mono); font-size: 0.84rem; white-space: pre-wrap; word-break: break-word; background: rgba(15, 23, 42, 0.55); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; color: #dbeafe; }
+  </style>
+</head>
+<body>
+  <nav class="nav"><div class="container nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/images/logo.png" alt="IMA" class="nav-logo" /><span>IMA Studio Skills</span></a><div class="nav-links"><a href="../index.html#skills">技能列表</a><a href="../manage.html">案例导航</a></div></div></nav>
+  <main class="tutorial-wrap"><div class="container">
+    <h1 class="section-title">IMA Seedance 2.0 Video Generator</h1>
+    <p class="section-subtitle">Seedance 2.0 视频生成技能。EN: quality-first and fast-iteration video workflows for text, image, first-last-frame, and reference media generation.</p>
+
+    <section class="tutorial-card">
+      <h2>模型定位 / Model Positioning</h2>
+      <ul>
+        <li><strong>Seedance 2.0 (`ima-pro`)</strong>：质量优先，适合正式成片、广告、产品演示和强调镜头语言的内容。</li>
+        <li><strong>Seedance 2.0 Fast (`ima-pro-fast`)</strong>：速度优先，适合快速打样、镜头 A/B 测试、脚本节奏验证。</li>
+      </ul>
+      <div class="tutorial-anchor-list">
+        <a href="#text-to-video">Text to Video</a>
+        <a href="#image-to-video">Image to Video</a>
+        <a href="#first-last-frame">First-Last-Frame</a>
+        <a href="#reference-media">Reference Media</a>
+      </div>
+    </section>
+
+    <section class="tutorial-card">
+      <h2>技能亮点 / Why Teams Choose It</h2>
+      <ul>
+        <li>高动态一致性与顺滑运动表达，适合电影感镜头和产品演示片段。</li>
+        <li>支持推、拉、摇、移、跟拍等镜头语言描述，适合 storyboard 驱动的视频生成。</li>
+        <li>支持图像、视频、音频参考输入，适合角色一致性、广告样片和多模态控制。</li>
+        <li>可覆盖短片概念验证、社媒短视频、品牌宣传片和 AI 叙事片段。</li>
+      </ul>
+    </section>
+
+    <section class="tutorial-card">
+      <h2>推荐输入 / Recommended Inputs</h2>
+      <ol>
+        <li>明确的 prompt：主体、场景、动作、镜头语言、节奏和风格。</li>
+        <li>模型选择：质量优先用 <code>ima-pro</code>，速度优先用 <code>ima-pro-fast</code>。</li>
+        <li>如需图生视频、首尾帧过渡或参考约束，请提供对应图片、视频或音频素材。</li>
+        <li>运行前确保配置 <code>IMA_API_KEY</code>，并具备 <code>python3</code>、<code>ffmpeg</code>、<code>ffprobe</code>。</li>
+      </ol>
+    </section>
+
+    <section id="text-to-video" class="tutorial-card">
+      <h2>Text to Video</h2>
+      <p>适合从创意脚本、广告文案、镜头说明直接生成短视频片段。</p>
+      <ul>
+        <li>最小输入：prompt</li>
+        <li>推荐模型：正式出片用 <code>ima-pro</code>；快速概念验证用 <code>ima-pro-fast</code></li>
+        <li>预期结果：围绕描述生成具备镜头感和运动一致性的短视频</li>
+      </ul>
+    </section>
+
+    <section id="image-to-video" class="tutorial-card">
+      <h2>Image to Video</h2>
+      <p>适合已有 KV、产品图、角色图的动画化，让静态画面获得镜头运动与动作延展。</p>
+      <ul>
+        <li>最小输入：prompt + 1 张输入图</li>
+        <li>推荐模型：需质感和稳定性时用 <code>ima-pro</code></li>
+        <li>预期结果：保留主体视觉基础上生成镜头推进、运动或场景变化</li>
+      </ul>
+    </section>
+
+    <section id="first-last-frame" class="tutorial-card">
+      <h2>First-Last-Frame Transition</h2>
+      <p>适合从起始画面和结束画面之间生成自然过渡，常用于转场、产品形态变化、角色状态切换。</p>
+      <ul>
+        <li>最小输入：prompt + 2 张图片</li>
+        <li>推荐模型：优先 <code>ima-pro</code>，以获得更稳定的过渡与画面连贯性</li>
+        <li>预期结果：从首帧到尾帧的平滑插值与镜头连续性</li>
+      </ul>
+    </section>
+
+    <section id="reference-media" class="tutorial-card">
+      <h2>Reference Media</h2>
+      <p>适合需要更强风格约束或叙事约束的场景，例如角色一致性、产品视频、广告节奏参考和声音导向片段。</p>
+      <ul>
+        <li>最小输入：prompt + 参考图，必要时再加参考视频或参考音频</li>
+        <li>推荐模型：探索阶段可用 <code>ima-pro-fast</code>，定稿阶段切到 <code>ima-pro</code></li>
+        <li>预期结果：在主体形象、节奏或参考媒介约束下生成更可控的视频片段</li>
+      </ul>
+    </section>
+
+    <section class="tutorial-card">
+      <h2>安装与调用 / Install and Call</h2>
+      <p>GitHub: <a href="https://github.com/imastuido/ima-seedance2.0-video-generator">https://github.com/imastuido/ima-seedance2.0-video-generator</a></p>
+      <div class="tutorial-code">git clone https://github.com/imastuido/ima-seedance2.0-video-generator.git</div>
+      <p>运行依赖：<code>IMA_API_KEY</code>、<code>python3</code>、<code>ffmpeg</code>、<code>ffprobe</code>。</p>
+    </section>
+
+    <section class="tutorial-card">
+      <h2>边界说明 / Scope Boundary</h2>
+      <p>该页面用于说明工作流能力、输入要求和入口方式，不展示真实公开视频案例。后续如有可发布素材，可再扩充为独立 demo 页面。</p>
+    </section>
+  </div></main>
+</body>
+</html>
